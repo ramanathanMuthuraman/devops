@@ -21,6 +21,13 @@ repositories {
     mavenCentral()
 }
 
+distZip {
+    into(project.name) {
+        from '.'
+        include 'Procfile'
+    }
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
