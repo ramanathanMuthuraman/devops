@@ -6,4 +6,6 @@ before_install:
   - pip install --user awscli
 script:
  ./gradlew clean build
- 
+ aws s3 cp build/distributions/devops.zip s3://devops-08072017/devops.zip
+ aws elasticbeanstalk create-application-version --application-name 'My First Elastic Beanstalk Application' --version-label 1.0.7 --description 1.0.7 --source-bundle S3Bucket="devops-08072017",S3Key="devops.zip"
+ aws elasticbeanstalk update-environment --application-name 'My First Elastic Beanstalk Application' --environment-id e-h6jdd3cxqt --version-label 1.0.7
